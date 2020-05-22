@@ -12,7 +12,6 @@
 
         function index(){
             $query =$this->model_e->get();
-
             include_once('vistas/header.php');
             include_once('vistas/index.php');
             include_once('vistas/footer.php');
@@ -29,8 +28,6 @@
         }
 
         function get_datosE(){
-
-            
             $data['id']=$_REQUEST['txt_id'];
             $data['cedula']=$_REQUEST['txt_cedula'];
             $data['nombre']=$_REQUEST['txt_nombre'];

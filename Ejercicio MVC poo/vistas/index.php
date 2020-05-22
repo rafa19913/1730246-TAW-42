@@ -5,7 +5,6 @@
     </div>
     <div class="container">
         <table class="table table-striped ">
-            <thead>
                 <tr>
                     <th>id</th>
                     <th>cedula</th>
@@ -16,8 +15,7 @@
                     <th>fecha</th>
                     <th>acción</th>
                 </tr>
-            </thead>
-            <tbody>
+                
                 <?php foreach($query as $data): ?>
                     <tr>
                         <th><?php echo $data['id']; ?></th>
@@ -33,7 +31,6 @@
                         </th>
                     </tr>
                 <?php endforeach; ?>
-            </tbody>
         </table>
     </div>
     
