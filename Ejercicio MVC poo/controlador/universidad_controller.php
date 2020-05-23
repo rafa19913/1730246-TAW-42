@@ -1,42 +1,36 @@
 <?php 
-    require_once('modelo/estudiante_model.php');
+    require_once('modelo/universidad_model.php');
 
-    class estudiante_controller{
+    class universidad_controller{
 
         private $model_e;
         private $model_p;
 
         function __construct(){
-            $this->model_e=new estudiante_model();
+            $this->model_e = new universidad_model();
         }
 
         function index(){
             $query =$this->model_e->get();
             include_once('vistas/header.php');
-            include_once('vistas/estudiantes/estudiante.php');
+            include_once('vistas/universidades/universidades.php');
             include_once('vistas/footer.php');
         }
-        function estudiante(){
+        
+        function universidad(){
             $data=NULL;
             if(isset($_REQUEST['id'])){
                 $data=$this->model_e->get_id($_REQUEST['id']);    
             }
             $query=$this->model_e->get();
             include_once('vistas/header.php');
-            include_once('vistas/estudiantes/CU_estudiante.php');
+            include_once('vistas/universidades/CU_universidades.php');
             include_once('vistas/footer.php');
         }
 
-        function get_datosE(){
+        function get_datosU(){
             $data['id']=$_REQUEST['txt_id'];
-            $data['cedula']=$_REQUEST['txt_cedula'];
             $data['nombre']=$_REQUEST['txt_nombre'];
-            $data['apellidos']=$_REQUEST['txt_apellidos'];
-            $data['promedio']=$_REQUEST['txt_promedio'];
-            $data['edad']=$_REQUEST['txt_edad'];
-            $data['fecha']=$_REQUEST['txt_fecha'];
-            $data['id_carrera']=1;
-            $data['id_universidad']=1;
 
             if ($_REQUEST['id']=="") {
                 $this->model_e->create($data);
@@ -46,9 +40,7 @@
                 $date=$_REQUEST['id'];
                 $this->model_e->update($data,$date);
             }
-            
             header("Location:index.php");
-
         }
 
         function confirmarDelete(){
@@ -65,7 +57,7 @@
             }
 
             include_once('vistas/header.php');
-            include_once('vistas/estudiantes/confirm.php');
+            include_once('vistas/universidades/confirm.php');
             include_once('vistas/footer.php');
             
 

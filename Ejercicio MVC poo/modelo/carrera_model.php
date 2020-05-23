@@ -1,33 +1,31 @@
 <?php
     
-    class estudiante_model{
+    class carrera_model{
         private $DB;
-        private $estudiantes;
+        private $carreras;
 
         function __construct(){
             $this->DB=Database::connect();
         }
 
         function get(){
-            $sql= 'SELECT * FROM estudiante ORDER BY id DESC';
+            $sql= 'SELECT * FROM carrera ORDER BY id DESC';
             $fila=$this->DB->query($sql);
-            $this->estudiantes=$fila;
-            return  $this->estudiantes;
+            $this->carreras=$fila;
+            return  $this->carreras;
         }
 
         function create($data){
-
             $this->DB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql="INSERT INTO estudiante(id,cedula,nombre,apellidos,promedio,edad,fecha,id_carrera,id_universidad)VALUES (?,?,?,?,?,?,?,?,?)";
-
+            $sql="INSERT INTO carrera(id,nombre)VALUES (?,?)";
             $query = $this->DB->prepare($sql);
-            $query->execute(array($data['id'],$data['cedula'],$data['nombre'],$data['apellidos'],$data['promedio'],$data['edad'],$data['fecha'],$data['id_carrera'],$data['id_universidad']));
+            $query->execute(array($data['id'],$data['nombre']));
             Database::disconnect();       
 
         }
         function get_id($id){
             $this->DB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "SELECT * FROM estudiante where id = ?";
+            $sql = "SELECT * FROM carrera where id = ?";
             $q = $this->DB->prepare($sql);
             $q->execute(array($id));
             $data = $q->fetch(PDO::FETCH_ASSOC);
@@ -36,16 +34,16 @@
 
         function update($data,$date){
             $this->DB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "UPDATE estudiante  set  cedula=?, nombre =?, apellidos=?,promedio=?, edad=?, fecha=?, id_carrera=?, id_universidad=? WHERE id = ? ";
+            $sql = "UPDATE carrera set nombre =? WHERE id = ? ";
             $q = $this->DB->prepare($sql);
-            $q->execute(array($data['cedula'],$data['nombre'],$data['apellidos'],$data['promedio'],$data['edad'],$data['fecha'],$data['id_carrera'],$data['id_universidad'],$date));
+            $q->execute(array($data['nombre'],$date));
             Database::disconnect();
 
         }
 
         function delete($date){
             $this->DB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql="DELETE FROM estudiante where id=?";
+            $sql="DELETE FROM carrera where id=?";
             $q=$this->DB->prepare($sql);
             $q->execute(array($date));
             Database::disconnect();

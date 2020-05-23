@@ -1,6 +1,5 @@
 <?php
-class Database
-{
+class Database{
     private static $dbName = 'ejercicio' ;
     private static $dbHost = 'localhost' ;
     private static $dbUsername = 'root';
