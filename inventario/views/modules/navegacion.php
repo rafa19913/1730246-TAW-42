@@ -1,7 +1,7 @@
 <?php
 //Verifica que exista una sesion iniciada 
-	if($_GET['action']=='salir'){
-		header('location:index.php?action=ingresar');
+	if($_GET['action'] == 'salir'){
+		//header('location:index.php?action=ingresar');
 	}
 ?>
 <!--Navbar-->
@@ -18,7 +18,7 @@
 <aside class="main-sidebar sidebar-dark-success elevation-4">
 	<!--Brand Logo-->
 	<a href="index.php?action=tablero" class="brand-link nav-success">
-		<img src="views/assets/dist/img/UPV.png" alt="Inventarios | TAW | UPV" class="brand-image img-square" style="opacity: .8">
+		<img src="views/assets/dist/img/upv.png" alt="Inventarios | TAW | UPV" class="brand-image img-square" style="opacity: .8">
 		<span class="brand-text font-weight-light">Inventarios 2020</span>
 	</a>
 <!--Sidebar-->
@@ -26,7 +26,7 @@
 		<!--Sidebar user panel (optional)-->
 		<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 			<div class="image">
-				<img src="views/assets/dist/img/user2-160x60.jpg" class="img-circle elevation-2" alt="User Image">
+				<img src="views/assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
 			</div>
 			<div class="info">
 				<a href="index.php?action=tablero" class="d-block"> <?php /*Muestra el nombre del usuario actual*/ if (isset($_SESSION['nombre_usuario'])) {
@@ -72,6 +72,8 @@
 					</a>
 				</li>
 
+		
+
 				<li class="nav-item">
 				<a href="index.php?action=salir" class="nav-link">
 					<i class="nav-icon fas fa-sign-out-alt"></i>
@@ -80,6 +82,7 @@
 						</p>
 					</a>
 				</li>
+
 			</ul>
 		</nav>
 		<!--/.sidebar menu-->

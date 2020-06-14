@@ -31,11 +31,12 @@
     <!-- DataTables -->
     <link rel="stylesheet" href="views/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
 </head>
+
 <body class="hold-transition slidebar-mini layout-fixed">
 	<?php
     //Se inicia la sesion y se verifica que se haya iniciado sesion correctamente para mostrar el tablero y el menu principal
 	session_start();
-	if(isset($_SESSION['validar']) && $_SESSION['validar']==true){
+	if(isset($_SESSION['validar']) && $_SESSION['validar'] == true){
 		include "modules/navegacion.php"
     ?>
 	    <div class="wrapper">
@@ -57,9 +58,9 @@
 							?>
                             <!--Aui va el contenido de la pagina-->
 							<?php
-							 }
-							$mvc= new MvcController();
-							$mvc->enlacesPaginasController();
+                                }
+                                $mvc = new MvcController();
+                                $mvc -> enlacesPaginasController();
 							?>
 						</div>
 				    </section>
@@ -67,7 +68,7 @@
 			</div>
 	<?php
     /*Se verifica que la vista actual no sea el login, en caso de que sea el login, el footer del template no se muestra*/
-	if($_GET['action']!='ingresar'){
+	if($_GET['action'] != 'ingresar'){
 	?>
     <!--
         <footer class="main-footer">
