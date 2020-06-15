@@ -35,13 +35,19 @@ class MvcController{
 			if(isset($_POST["txtUser"]) && isset($_POST["txtPassword"])){
 				$datosController = array("user"=>$_POST["txtUser"],
 				"password"=>$_POST["txtPassword"]);
+
 				$respuesta = Datos::ingresoUsuarioModel($datosController,"users");
+
+				
 				
 				if($respuesta["usuario"] == $_POST["txtUser"] && password_verify($_POST["txtPassword"],$respuesta["contrasena"])){
 					session_start();
 					$_SESSION["validar"]=true;
+					$_SESSION["perfil"]=$respuesta["perfil"];
 					$_SESSION["nombre_usuario"]=$respuesta["nombre_usuario"];
 					$_SESSION["id"]=$respuesta["id"];
+					$_SESSION["perfil"]=$respuesta["perfil"];
+
 					header("Location:index.php?action=tablero");
 				}else{
 					header("Location:index.php?action=fallo&res=fallo");
@@ -76,8 +82,47 @@ class MvcController{
 
 		// Muestra mediante un foreach todos los productos
 		public function vistaProductsController(){
+			
 			$respuesta=Datos::vistaProductsModel("products");
 
+			foreach ($respuesta as $row => $item) {
+				echo '
+					<tr>
+						<td>
+							<a href="index.php?action=inventario&idProductEditar='.$item["id"].'" class="btn btn-warning btn-sm btn-icon" title="Editar" data-toggle="tooltip"><i class="fa fa-edit"></i></a>
+						</td>
+						
+						<td>
+							<a href="index.php?action=inventario&idBorrar='.$item["id"].'" class="btn btn-danger btn-sm btn-icon" title="Eliminar" data-toggle="tooltip"><i class="fa fa-trash"></i></a>
+						</td>
+
+							<td>'.$item["id"].'</td>
+							<td>'.$item["codigo"].'</td>
+							<td>'.$item["producto"].'</td>
+							<td>$'.$item["precio"].'</td>
+							<td>'.$item["stock"].'</td>
+							<td>'.$item["categoria"].'</td>	
+							
+						<td>
+							<a href="index.php?action=inventario&idProductAdd='.$item["id"].'" class="btn btn-primary btn-sn btn-icon" title="Quitar de Stock" data-toggle="tooltip"><i class="fa fa-plus" aria-hidden="true"></i></a>
+						</td>
+							
+						<td>
+							<a href="index.php?action=inventario&idProductDel='.$item["id"].'" class="btn btn-primary btn-sn btn-icon" title="Quitar de Stock" data-toggle="tooltip"><i class="fa fa-window-minimize" aria-hidden="true"></i></a>
+						</td>
+
+
+				</tr>
+					';
+				}
+		}
+		
+		
+		
+		// Muestra mediante un foreach todos los productos
+		public function agregarProductVentaController(){
+			
+			$respuesta=Datos::vistaProductsModel("products");
 
 			foreach ($respuesta as $row => $item) {
 				echo '
@@ -110,6 +155,44 @@ class MvcController{
 					';
 				}
         }
+
+
+		// Muestra mediante un foreach todos los productos
+		public function vistaProductsVentaController(){
+			$respuesta=Datos::vistaProductsModel("products");
+
+
+			foreach ($respuesta as $row => $item) {
+
+				$id = $item["id"];
+
+
+				$resp = Datos::obtenerNombreDelProductoPorId($id);
+
+
+
+				$codigo = $item["codigo"];
+				$precio = $item["precio"];
+				$nombreProducto = $item["producto"];
+
+				echo '
+					<tr>
+						<td>
+
+							<button onClick="agregarProductoATablaAuxiliar('.$id.','.$precio.','.$codigo.');" class="btn btn-primary btn-sm btn-icon" title="Agregar" data-toggle="tooltip"><i class="fa fa-plus-square"></i></button>
+		
+						</td>
+							<td>'.$item["codigo"].'</td>
+							<td>'.$nombreProducto.'</td>
+							<td>$'.$item["precio"].'</td>
+							<td>'.$item["stock"].'</td>
+							<td>'.$item["categoria"].'</td>	
+						</tr>
+					
+					';
+				}
+        }
+
 
 
 
@@ -1038,6 +1121,8 @@ class MvcController{
 			}
 		}
 	?>
+
+
 
 
 				<!--

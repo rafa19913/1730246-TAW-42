@@ -25,7 +25,7 @@
 	}
 ?>
 <div class="container-fluid">
-	<div class="card card-secondary">
+	<div class="card card-primary">
 		<div class="card-header">
 			<h3 class="card-title">Inventario</h3>
 		</div>

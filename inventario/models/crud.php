@@ -15,7 +15,7 @@
 		// Inició de sesión de los usuario 
 		public function ingresoUsuarioModel($datosModel, $tabla){
 			// Preparar las sentencias PDO para ejecutar la consulta de validación de usuario
-			$stmt=Conexion::conectar()->prepare("SELECT CONCAT(firstname, ' ',lastname) AS 'nombre_usuario', user_name AS 'usuario', user_password AS 'contrasena', user_id AS 'id' FROM $tabla WHERE user_name = :usuario");
+			$stmt=Conexion::conectar()->prepare("SELECT perfil as 'perfil', CONCAT(firstname, ' ',lastname) AS 'nombre_usuario', user_name AS 'usuario', user_password AS 'contrasena', user_id AS 'id'FROM $tabla WHERE user_name = :usuario");
 			$stmt->bindParam(":usuario", $datosModel["user"], PDO::PARAM_STR);
 			$stmt->execute();
 			return $stmt->fetch();
@@ -103,6 +103,13 @@
 
 	public function vistaProductsModel($tabla){
 		$stmt=Conexion::conectar()->prepare("SELECT p.id_product as id, p.code_product as codigo, p.name_product as producto, p.price_product as precio, p.stock as stock, c.name_category as categoria FROM $tabla p inner join categories c on p.id_category = c.id_category");
+		$stmt->execute();
+		return $stmt->fetchAll();
+		$stmt->close();
+	}
+
+	public function obtenerNombreDelProductoPorId($id){
+		$stmt=Conexion::conectar()->prepare("SELECT name_product FROM products WHERE id_product = $id");
 		$stmt->execute();
 		return $stmt->fetchAll();
 		$stmt->close();

@@ -4,7 +4,17 @@
 	header("location:index.php?action=ingresar");
 	exit();
 }
+
+$perfil = $_SESSION['perfil'];
+$usuario = $_SESSION['nombre_usuario'];
+
+
+
 /*Se llama al controlador que muestra las tarjetas con la informacion que se obtiene del sistema (# de ventas, # de usuarios, #productos, # categorias, # de movimientos en el stock, total de ganancias*/
-	$tablero = new MvcController();
-	$tablero -> contarFilas();
+	
+	if ($perfil == "admin"){
+		$tablero = new MvcController();
+		$tablero -> contarFilas();
+	}
+
 ?>
