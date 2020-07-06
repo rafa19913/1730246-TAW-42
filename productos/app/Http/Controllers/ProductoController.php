@@ -27,7 +27,7 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        return view('productos.create');
+        //return view('productos.create');
     }
 
     /**
@@ -41,7 +41,7 @@ class ProductoController extends Controller
         $request->validate([
             'nombre' => 'required',
         ]);
-        Departamento::create($request->all());
+        Producto::create($request->all());
 
         return redirect()->route('productos.index')
 
