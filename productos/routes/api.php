@@ -17,3 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::post('crearProducto','ProductoController@store'); // Ruta que se utiliza en el copmonente AgregarComponent.vue
+
+Route::get('actualizarProducto','ProductoController@index'); // Ruta que se utiliza en el copmonente AgregarComponent.vue
+
+Route::get('obtenerProductos','ProductoController@obtener'); // Ruta que se utiliza en el copmonente ListarComponent.vue

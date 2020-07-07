@@ -18,14 +18,16 @@ mix.styles([
 ],'public/css/all.css')
 
 .scripts([
+    'resources/assets/js/jquery.min.js',
     'resources/assets/js/boostrap.min.js',
     'resources/assets/js/Chart.min.js',
-    'resources/assets/js/jquery.min.js',
     'resources/assets/js/pace.min.js',
     'resources/assets/js/popper.min.js',
     'resources/assets/js/template.js'
 
 ],'public/js/all.js')
+
+.js(['resources/js/app.js'],'public/js/app.js');
 
 //mix.js('resources/js/app.js', 'public/js')
 //    .sass('resources/sass/app.scss', 'public/css');
