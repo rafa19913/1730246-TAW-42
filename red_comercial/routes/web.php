@@ -17,21 +17,11 @@ Route::get('/', function () {
     return view('principal.index');
 });
 
-Route::get('/ingreso', function () {
-    return view('principal.ingreso');
+Route::get('/admin', function () {
+    return view('administrador.index');
 });
 
-
-Route::get('/registrarme', function () {
-    return view('principal.registrarme');
-});
-
-
-Route::get('/contacto', function () {
-    return view('principal.contacto');
-});
-
-
+Route::resource('usuarios','UsuarioController');
 
 
 
