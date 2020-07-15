@@ -4,7 +4,7 @@
 
 
     <div class="modale">
-   <!--Inicio del modal ingresar -->
+        <!--Inicio del modal ingresar -->
           <div class="modal fade" id="modalIngresar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
                 <div class="modal-dialog modal-primary modal-lg" role="document">
                     <div class="modal-content">
@@ -18,8 +18,8 @@
                     <div class="login100-pic js-tilt" data-tilt>
                         <img src="images/img-01.png" alt="IMG">
                     </div>
-                       
-                     <div class="login100-form validate-form">
+
+                    <form class="login100-form validate-form" method="POST" action="this.post-route">
 
                         <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
                             <input v-model="email" class="input100" type="text" name="email" placeholder="Email">
@@ -30,7 +30,7 @@
                         </div>
     
                         <div class="wrap-input100 validate-input" data-validate = "Password is required">
-                            <input v-model="password" class="input100" type="password" name="pass" placeholder="Password">
+                            <input v-model="password" class="input100" type="password" name="password" placeholder="Password">
                             <span class="focus-input100"></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-lock" aria-hidden="true"></i>
@@ -38,20 +38,13 @@
                         </div>
                         
                         <div class="container-login100-form-btn">
-                            <button class="login100-form-btn" data-dismiss="modal" v-on:click="ingresar">
+                            <button class="login100-form-btn" data-dismiss="modal">
                                 Aceptar
                             </button>
                         </div>
-    
-                        <div class="text-center p-t-12">
-                            <span class="txt1">
-                                No recuerda su
-                            </span>
-                            <a class="txt2" href="#">
-                                nombre de usuario o contraseña?
-                            </a>
-                        </div>
-                     </div>
+                        
+                    </form>    
+
                         </div>
                   
                     </div>
@@ -133,6 +126,10 @@
 
 
      
+    
+    
+    
+    
     </div>
 
 
@@ -147,6 +144,7 @@
     export default {
         mounted() {
             console.log('Componente Modales montado');
+             props: ['post-route']
         },
         data(){
             return{
@@ -156,30 +154,19 @@
         },  
         methods:{
             ingresar(){
-                //alert("Ingreso de usuario" + this.email + this.password);
-                //let url = '/api/ingresoUsuario' //Ruta hecha en api.php (routes)
+                alert("Ingreso de usuario" + this.email + this.password);
+                
+                let url = '/api/ingresoUsuario' //Ruta hecha en api.php (routes)
+                //alert(this.)
 
-                if (this.email == "admin@gmail.com"){
-                    //alert('Correo correcto');
-                    window.location = "/admin"
-                   //this.$router
-                   //this.$router.push('Home') 
-                }else{
-                    alert('Correo incorrecto');
-                }
-
-                /*axios.get(url,{ //nombres y descripción se envian para que crear el nuevo producto
+                
+                
+                axios.get(url,{ //nombres y descripción se envian para que crear el nuevo producto
                     'email':this.email,
                     'password':this.password,
                     
                 }).then(function(response){
-                    if (this.email == 'admin@gmail.com'){
-                        alert('correcto');
-                        //alert('llego al alert de response true');
-                    }else{
-                        alert('incorrecto');
-                        //alert('llego al alert de response false ');
-                    }
+                    
                  
                     
                     // if (response.){
@@ -192,7 +179,7 @@
                 .catch(function (error) {
                     console.log(error);
                 }); 
-                */ 
+                
 
 
             },

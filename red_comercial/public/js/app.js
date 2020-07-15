@@ -2219,12 +2219,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Componente Modales montado');
+
+    props: ['post-route'];
   },
   data: function data() {
     return {
@@ -2236,41 +2235,23 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     ingresar: function ingresar() {
-      //alert("Ingreso de usuario" + this.email + this.password);
-      //let url = '/api/ingresoUsuario' //Ruta hecha en api.php (routes)
-      if (this.email == "admin@gmail.com") {
-        //alert('Correo correcto');
-        window.location = "/admin"; //this.$router
-        //this.$router.push('Home') 
-      } else {
-        alert('Correo incorrecto');
-      }
-      /*axios.get(url,{ //nombres y descripción se envian para que crear el nuevo producto
-          'email':this.email,
-          'password':this.password,
-          
-      }).then(function(response){
-          if (this.email == 'admin@gmail.com'){
-              alert('correcto');
-              //alert('llego al alert de response true');
-          }else{
-              alert('incorrecto');
-              //alert('llego al alert de response false ');
-          }
-       
-          
-          // if (response.){
-          //     alert("Response is true"); 
-          // }else{
-          //     alert("Response is false"); 
-          // }
-          //document.getElementById('btnCerrar').click(); // Cierra el modal
-      })
-      .catch(function (error) {
-          console.log(error);
-      }); 
-      */
+      alert("Ingreso de usuario" + this.email + this.password);
+      var url = '/api/ingresoUsuario'; //Ruta hecha en api.php (routes)
+      //alert(this.)
 
+      axios.get(url, {
+        //nombres y descripción se envian para que crear el nuevo producto
+        'email': this.email,
+        'password': this.password
+      }).then(function (response) {// if (response.){
+        //     alert("Response is true"); 
+        // }else{
+        //     alert("Response is false"); 
+        // }
+        //document.getElementById('btnCerrar').click(); // Cierra el modal
+      })["catch"](function (error) {
+        console.log(error);
+      });
     }
   }
 });
@@ -38209,105 +38190,97 @@ var render = function() {
                 [
                   _vm._m(1),
                   _vm._v(" "),
-                  _c("div", { staticClass: "login100-form validate-form" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "wrap-input100 validate-input",
-                        attrs: {
-                          "data-validate": "Valid email is required: ex@abc.xyz"
-                        }
-                      },
-                      [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.email,
-                              expression: "email"
-                            }
-                          ],
-                          staticClass: "input100",
-                          attrs: {
-                            type: "text",
-                            name: "email",
-                            placeholder: "Email"
-                          },
-                          domProps: { value: _vm.email },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.email = $event.target.value
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "focus-input100" }),
-                        _vm._v(" "),
-                        _vm._m(2)
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "wrap-input100 validate-input",
-                        attrs: { "data-validate": "Password is required" }
-                      },
-                      [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.password,
-                              expression: "password"
-                            }
-                          ],
-                          staticClass: "input100",
-                          attrs: {
-                            type: "password",
-                            name: "pass",
-                            placeholder: "Password"
-                          },
-                          domProps: { value: _vm.password },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.password = $event.target.value
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "focus-input100" }),
-                        _vm._v(" "),
-                        _vm._m(3)
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "container-login100-form-btn" }, [
+                  _c(
+                    "form",
+                    {
+                      staticClass: "login100-form validate-form",
+                      attrs: { method: "POST", action: "this.post-route" }
+                    },
+                    [
                       _c(
-                        "button",
+                        "div",
                         {
-                          staticClass: "login100-form-btn",
-                          attrs: { "data-dismiss": "modal" },
-                          on: { click: _vm.ingresar }
+                          staticClass: "wrap-input100 validate-input",
+                          attrs: {
+                            "data-validate":
+                              "Valid email is required: ex@abc.xyz"
+                          }
                         },
                         [
-                          _vm._v(
-                            "\n                             Aceptar\n                         "
-                          )
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.email,
+                                expression: "email"
+                              }
+                            ],
+                            staticClass: "input100",
+                            attrs: {
+                              type: "text",
+                              name: "email",
+                              placeholder: "Email"
+                            },
+                            domProps: { value: _vm.email },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.email = $event.target.value
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "focus-input100" }),
+                          _vm._v(" "),
+                          _vm._m(2)
                         ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _vm._m(4)
-                  ])
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "wrap-input100 validate-input",
+                          attrs: { "data-validate": "Password is required" }
+                        },
+                        [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.password,
+                                expression: "password"
+                              }
+                            ],
+                            staticClass: "input100",
+                            attrs: {
+                              type: "password",
+                              name: "password",
+                              placeholder: "Password"
+                            },
+                            domProps: { value: _vm.password },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.password = $event.target.value
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "focus-input100" }),
+                          _vm._v(" "),
+                          _vm._m(3)
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _vm._m(4)
+                    ]
+                  )
                 ]
               )
             ])
@@ -38374,18 +38347,19 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "text-center p-t-12" }, [
-      _c("span", { staticClass: "txt1" }, [
-        _vm._v(
-          "\n                             No recuerda su\n                         "
-        )
-      ]),
-      _vm._v(" "),
-      _c("a", { staticClass: "txt2", attrs: { href: "#" } }, [
-        _vm._v(
-          "\n                             nombre de usuario o contraseña?\n                         "
-        )
-      ])
+    return _c("div", { staticClass: "container-login100-form-btn" }, [
+      _c(
+        "button",
+        {
+          staticClass: "login100-form-btn",
+          attrs: { "data-dismiss": "modal" }
+        },
+        [
+          _vm._v(
+            "\n                            Aceptar\n                        "
+          )
+        ]
+      )
     ])
   },
   function() {
@@ -38579,7 +38553,7 @@ var staticRenderFns = [
                       [
                         _c("button", { staticClass: "login100-form-btn" }, [
                           _vm._v(
-                            "\n                             Registrarme\n                         "
+                            "\n                            Registrarme\n                        "
                           )
                         ])
                       ]
